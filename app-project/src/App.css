@@ -40,3 +40,69 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+.container{
+  display: flex;
+  flex-direction:column;
+  margin:auto;
+  margin-top: 20px;
+  background: '#fff';
+  padding-bottom: 30px;
+
+}
+
+.text{
+  font-size: 25px;
+  color:#07137D;
+  font-weight:700;
+}
+
+.underline{
+  width:61px;
+  height:3px;
+  background:#07137D;
+  border-radius:9px;
+  margin-left: 110px;
+}
+
+.inputs{
+  margin-top:55px;
+  display:flex;
+  flex-direction: column;
+  gap:25px;
+}
+.input{
+  margin:auto;
+  display:flex;
+  align-items: center;
+  width:400px;
+  height:50px;
+  background:#eaeaea;
+  border-radius: 6px;
+}
+
+.input input{
+  height:50px;
+  width:400px;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#797979;
+  font-size: 15px;
+  margin:50px
+}
+
+.submit{
+  width:400px;
+  border:#07137D;
+  border-style: solid;
+  border-width: 1px;
+}
+
+img{
+  width:250px;
+  height:250px;
+}
