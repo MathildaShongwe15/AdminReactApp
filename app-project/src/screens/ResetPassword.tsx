@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { Layout } from 'antd';
 import './App.css'
 import React from 'react';
 
@@ -15,18 +16,11 @@ import React from 'react';
     <div className='underline'></div>
   </div>
   <div className="inputs">
-  <div className="input" >
-      <input type="text" placeholder='Enter OTP'></input>
-    </div>
+
     <div className="input" >
       <input type="text" placeholder='Enter Email Address'></input>
     </div>
-    <div className="input">
-      <input type="password" placeholder='Enter New  Password'></input>
-    </div>
-    <div className="input">
-      <input type="password" placeholder='Confirm Password'></input>
-    </div>
+
     <div className='submit-container' >
       <button className='submit'>Sign Up</button>
     </div>
