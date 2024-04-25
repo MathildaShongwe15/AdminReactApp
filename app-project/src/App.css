@@ -1,5 +1,6 @@
 #root {
   max-width: 1280px;
+  height:100%
 }
 
 .logo {
@@ -103,7 +104,13 @@ img{
   width:250px;
   height:250px;
 }
+.cntr{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left:550px;
 
+}
 .badge{
   border-style: solid;
   border-width: 1px;
@@ -141,5 +148,37 @@ height:25px;
 text-align: center;
 width:80px;
 }
-td{
-row-gap: 15px;}
+
+#requests td{
+row-gap: 15px;
+padding:8px;
+border:1px solid #ddd;
+text-align: center;
+}
+#requests{
+  border-collapse:collapse;
+  width:100%;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#requests tr:nth-child(even){
+  background-color:#f2f2f2;
+}
+
+#requests tr:hover{
+  background-color:#ddd;
+}
+
+#requests tr:hover{
+  background-color:#ddd;
+}
+
+#requests th{
+  padding-top:12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #888;
+  color: white;
+  text-align: center;
+}
