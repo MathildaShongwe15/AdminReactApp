@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import MenuList from '../components/Menu';
 import React from 'react';
 
- function Sidebar() {
+ function customHeader() {
 
  const {Header,Sider} = Layout;
 
@@ -20,4 +20,4 @@ import React from 'react';
   );
 }
 
-export default Sidebar;
+export default customHeader;

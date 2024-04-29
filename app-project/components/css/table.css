@@ -1,0 +1,81 @@
+.cntr{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left:550px;
+    border:3px solid green;
+    margin-bottom:1500px;
+  
+  
+  }
+  .badge{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+  border-color: #C8E4B2;
+  background-color: #C8E4B2;
+  font-size: 13px;
+  color: #294B29;
+  height:25px;
+  text-align: center;
+  width:80px;
+  
+  }
+  .badge-decline{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+  border-color: #E97A7A;
+  background-color: #E97A7A;
+  font-size: 13px;
+  color: #8B322C;
+  height:25px;
+  text-align: center;
+  width:80px;
+  }
+  .badge-pending{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+  border-color: #FFBB70;
+  background-color: #FFBB70;
+  font-size: 13px;
+  color: #DC6B19;
+  height:25px;
+  text-align: center;
+  width:80px;
+  }
+  
+  #requests td{
+  row-gap: 15px;
+  padding:8px;
+  border:1px solid #ddd;
+  text-align: center;
+  }
+  #requests{
+    border-collapse:collapse;
+    width:100%;
+    font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  
+  #requests tr:nth-child(even){
+    background-color:#f2f2f2;
+  }
+  
+  #requests tr:hover{
+    background-color:#ddd;
+  }
+  
+  #requests tr:hover{
+    background-color:#ddd;
+  }
+  
+  #requests th{
+    padding-top:12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #888;
+    color: white;
+    text-align: center;
+  }
