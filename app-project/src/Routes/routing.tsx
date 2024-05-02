@@ -3,6 +3,8 @@ import Register from '../screens/Login';
 import Dashboard from '../screens/Dashboard';
 import RegisterProvider from '../screens/RegisterProvider'
 import ManageProvider from '../screens/ManageProviders'
+import ManageServices from '../screens/ManageServices'
+import Users from '../screens/AllUsers'
 import Complaints from '../screens/Complaints '
 import ResetPassword from '../screens/ResetPassword'
 import Home from '../screens/Login';
@@ -17,6 +19,8 @@ export default function Routing() {
           <Route path="/RegisterProvider" element={<RegisterProvider />}></Route>
           <Route path="/ManageProvider" element={<ManageProvider />}></Route>
           <Route path="/Complaints" element={<Complaints />}></Route>
+          <Route path="/ManageServices" element={<ManageServices />}></Route>
+          <Route path="/Users" element={<Users />}></Route>
           <Route path="/ResetPassword" element={<ResetPassword />}></Route>
 
         </Routes>

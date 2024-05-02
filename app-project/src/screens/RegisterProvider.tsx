@@ -3,9 +3,13 @@ import { Button, Card,Flex,Form,Input,Select,Typography, Upload, message } from 
 import '../App.css'
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
  function App() {
+  const navigate = useNavigate();
+
   const [fileList, setFileList] = useState([]);
+
   const handleUpload = (info:any) => {
     if (info.file.status === 'uploading') {
       message.info('Uploading...');
@@ -110,14 +114,14 @@ import React from 'react';
       </Form.Item>
 
 <Form.Item style={{maxWidth:550, marginLeft:20}}>
-  <Button  htmlType="submit" >
+  <Button  htmlType="submit"  onClick={() => navigate('/Users')} >
     Save and Add another
   </Button>
 </Form.Item>
 
 </div>
 <Form.Item style={{maxWidth:550, marginLeft:20}}>
-  <Button  htmlType="button" style={{ backgroundColor:'#C40C0C'}}  >
+  <Button onClick={() => navigate('/ManageServices')}  htmlType="button" style={{ backgroundColor:'#C40C0C'}}  >
     clear all fields
   </Button>
 </Form.Item>
