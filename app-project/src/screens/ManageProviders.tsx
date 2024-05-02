@@ -1,29 +1,58 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button,Modal,Table } from 'antd';
-import './App.css'
 import React from 'react';
-
+import Cards from '../../components/Cards'
+import Sidebar from '../../components/SideBar';
+import { Link } from 'react-router-dom';
  function App() {
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+            await fetch('http://localhost:3000/GetProviders',{
+                method:'GET',
+                headers:{
+                    'Content-Type':'application/json',
+                },})
+                .then(response => {
+                  if(!response.ok){
+                    throw new Error('Network response not ok')
+                  }
+
+                  console.log("response is okay", response)
+                  return  response.json();
+                })
+                .then(async data => setData(data))
+                .catch(err => console.log(err))
+        };
+        fetchData();
+        console.log(data)
+  }, []);
 
   const dataSource = [
     {
       key: '1',
-      name: 'Vision Towing',
+      name:  data.providers[0].Name,
       age: 'Towing',
-      address: 'New York',
+      address:data.providers[0].Email,
+      number:data.providers[0].PhoneNumber,
     },
     {
       key: '2',
-      name: 'Jane Smith',
+      name: data.providers[1].Name,
       age: 28,
-      address: 'Los Angeles',
+      address: data.providers[1].Email,
+      number:data.providers[1].PhoneNumber,
+
     },
     {
-      key: '2',
-      name: 'Jane Smith',
-      age: 28,
-      address: 'Los Angeles',
+      key: '3',
+      name:  data.providers[2].Name,
+      age: data.providers[2].Services.Type,
+      address: data.providers[2].Email,
+      number:data.providers[1].PhoneNumber,
+
     },
   ];
   const columns = [
@@ -53,8 +82,8 @@ import React from 'react';
       render: (text, record) => (
         <span>
           <Button
-           style={{marginLeft:20}}
-          >Edit</Button>
+           style={{marginLeft:20}}></Button>
+
           <Button style={{marginLeft:20, backgroundColor:'#C40C0C'}} onClick={showModal}>Delete</Button>
         </span>
       ),
@@ -77,8 +106,10 @@ import React from 'react';
   };
 
   return (
-    <div>
-    <h2 style={{marginLeft:400}}>Manage Service Providers</h2>
+    <div style={{height:800, width:1500, zIndex: -3}}>
+        {/* <Sidebar/> */}
+    <Cards/>
+    <h2 style={{marginLeft:400, marginTop:50 }}>Manage Service Providers</h2>
      <Table style={{marginLeft:400}} dataSource={dataSource} columns={columns} />
      <Modal
         visible={visible}
