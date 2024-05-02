@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Button, Card,Table, } from 'antd';
-import './App.css'
+// import './App.css'
 
 import React from 'react';
+import Cards from '../../components/Cards';
 
  function App() {
   const [data, setData] = useState([]);
@@ -20,9 +21,12 @@ import React from 'react';
 
 
   return (
-    <div style={{marginTop:-250}}>
-    <h2  style={{marginLeft:500}}>Manage Complaints or Compliments</h2>
-    <Table style={{marginLeft:500}}dataSource={complaints} columns={columns} />
+    <div style={{marginTop:0}}>
+      <Cards/>
+    <h2  style={{marginLeft:250, marginTop:50}}>Manage Complaints or Compliments</h2>
+    <span className='short-text' style={{marginLeft:250}}>Manage Complaints below</span>
+
+    <Table style={{marginLeft:250, width:1000,marginTop:20}}dataSource={complaints} columns={columns} />
 
 </div>
   )

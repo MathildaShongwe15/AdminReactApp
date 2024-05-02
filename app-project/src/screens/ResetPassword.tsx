@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Layout } from 'antd';
-import './App.css'
 import React from 'react';
 
  function App() {
@@ -14,6 +13,7 @@ import React from 'react';
      <img  src={'../src/assets/Logo (2).png'}/>
     <div className='text' >Reset Password!</div>
     <div className='underline'></div>
+    <span className='short-text2'>Enter Email so we can send an OTP to reset your password</span>
   </div>
   <div className="inputs">
 
@@ -22,7 +22,7 @@ import React from 'react';
     </div>
 
     <div className='submit-container' >
-      <button className='submit'>Sign Up</button>
+      <button className='submit'>Send OTP</button>
     </div>
   </div>
 </div>

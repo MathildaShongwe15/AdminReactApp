@@ -5,8 +5,8 @@
     margin-left:550px;
     border:3px solid green;
     margin-bottom:1500px;
-  
-  
+
+
   }
   .badge{
     border-style: solid;
@@ -19,7 +19,7 @@
   height:25px;
   text-align: center;
   width:80px;
-  
+
   }
   .badge-decline{
     border-style: solid;
@@ -45,7 +45,7 @@
   text-align: center;
   width:80px;
   }
-  
+
   #requests td{
   row-gap: 15px;
   padding:8px;
@@ -56,21 +56,20 @@
     border-collapse:collapse;
     width:100%;
     font-family: Arial, Helvetica, sans-serif;
-  
   }
-  
+
   #requests tr:nth-child(even){
     background-color:#f2f2f2;
   }
-  
+
   #requests tr:hover{
     background-color:#ddd;
   }
-  
+
   #requests tr:hover{
     background-color:#ddd;
   }
-  
+
   #requests th{
     padding-top:12px;
     padding-bottom: 12px;

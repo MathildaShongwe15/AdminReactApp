@@ -1,11 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Dashboard from '../src/screens/Dashboard'
-import ManageProviders from '../src/screens/ManageProviders'
+
 import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ManageProviders/>
-  </React.StrictMode>,
+<BrowserRouter>
+
+         <App/>
+
+  </BrowserRouter>
+  ,
 )
