@@ -13,7 +13,7 @@ import React from 'react';
 export default function Routing() {
     return (
         <Routes>
-          <Route path="/" element={<Home />}>      </Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/Dashboard" element={<Dashboard />}/>
           <Route path="/Register" element={<Register />}></Route>
           <Route path="/RegisterProvider" element={<RegisterProvider />}></Route>

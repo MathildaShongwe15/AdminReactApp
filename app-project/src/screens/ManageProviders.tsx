@@ -1,61 +1,46 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button,Modal,Table } from 'antd';
 import React from 'react';
 import Cards from '../../components/Cards'
 import Sidebar from '../../components/SideBar';
 import { Link, useNavigate } from 'react-router-dom';
  function App() {
-  const [data, setData] = useState([]);
   const navigate = useNavigate();
+
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      try{
+          const response = await fetch('http://localhost:3000/GetProviders');
 
-            await fetch('http://localhost:3000/GetProviders',{
-                method:'GET',
-                headers:{
-                    'Content-Type':'application/json',
-                },})
-                .then(response => {
-                  if(!response.ok){
-                    throw new Error('Network response not ok')
-                  }
+                if(!response.ok){
+                  throw new Error('Network response not ok')
+                }
+                const jsonData = await response.json();
+                setData( jsonData.providers);
+                console.log("!!!!!!!!!!!", jsonData.providers)
 
-                  console.log("response is okay", response)
-                  return  response.json();
-                })
-                .then(async data => setData(data))
-                .catch(err => console.log(err))
-        };
-        fetchData();
-        console.log(data)
-  }, []);
 
-  const dataSource = [
-    {
-      key: '1',
-      name: "data.providers[0].Name",
-      age: 'Towing',
-      address:"data.providers[0].Email",
-      number:"data.providers[0].PhoneNumber",
-    },
-    {
-      key: '2',
-      name: "data.providers[1].Name",
-      age: 28,
-      address: "data.providers[1].Email",
-      number:"data.providers[1].PhoneNumber",
+                console.log("response is okay", jsonData);
+            }
+            catch(error){
+              console.error('Error fetching Data', error);
+            }
+          }
 
-    },
-    {
-      key: '3',
-      name:  "data.providers[2].Name",
-      age: "data.providers[2].Services.Type",
-      address: "data.providers[2].Email",
-      number:"data.providers[1].PhoneNumber",
+fetchData()
+ },[]);
 
-    },
-  ];
+ const datas = data.map ((service, index) => ({
+  name: service.Name,
+  type: service.Services.Type,
+  email: service.Email,
+  number: service.PhoneNumber,
+  key: 'index'
+}))
+
+
   const columns = [
     {
       title: 'Service Provider Name',
@@ -64,25 +49,26 @@ import { Link, useNavigate } from 'react-router-dom';
     },
     {
       title: 'Service Type',
-      dataIndex: 'age',
-      key: 'age',
+      dataIndex: 'type',
+      key: 'type',
     },
     {
       title: 'Email',
-      dataIndex: 'address',
-      key: 'address',
+      dataIndex: 'email',
+      key: 'email',
     },
     {
       title: 'Phone Number',
-      dataIndex: 'address',
-      key: 'address',
+      dataIndex: 'number',
+      key: 'number',
     },
+
     {
       title: 'Action',
       key: 'action',
-      render: (text, record) => (
+      render: () => (
         <span>
-          <Button style={{marginLeft:20}} onClick={() => navigate('/Complaints')}>Edit</Button>
+          <Button style={{marginLeft:20}} >Edit</Button>
 
           <Button style={{marginLeft:20, backgroundColor:'#C40C0C'}} onClick={showModal}>Delete</Button>
         </span>
@@ -113,9 +99,7 @@ import { Link, useNavigate } from 'react-router-dom';
     <h2 style={{marginLeft:250, marginTop:50 }}>Manage Service Providers</h2>
     <span className='short-text' style={{marginLeft:250}}>Manage Service Providers below</span>
 
-    {data ? (
-     <Table style={{marginLeft:250, width:1000, marginTop:20}} dataSource={dataSource} columns={columns} />):
-     ( <p>Loading data...</p>)}
+     <Table style={{marginLeft:250, width:1000, marginTop:20}} dataSource={datas} columns={columns} />
      <Modal
         visible={visible}
         onOk={handleOk}
@@ -124,11 +108,11 @@ import { Link, useNavigate } from 'react-router-dom';
       >
         <p> Are you sure you want to delete this item?</p>
       </Modal>
-      <a href="" onClick={() => navigate('/RegisterProvider')}>Navigate to register Provider</a>
+      <a href="" onClick={() => navigate('/ManageProvider')} >Navigate to register Provider</a>
 
 </div>
   )
 
-}
+  }
 
 export default App;

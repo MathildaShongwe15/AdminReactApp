@@ -6,13 +6,19 @@ export function Login() {
 
   const navigate = useNavigate();
   return (
-    <>
+    <div className='main'>
+    <div className="container-img">
+
+    <img className='img-logo' src={'../src/assets/Logo (2).png'}/>
+      <img  className='img-main' src="../src/assets/work.png"></img>
+
+    </div>
     <div className='container'>
       <div className='header'>
-         <img  src={'../src/assets/Logo (2).png'}/>
-        <div className='text' >Welcome Back!</div>
+
+        <div className='text' >Admin Portal!</div>
         <div className='underline'></div>
-        <span className='short-text'>We have missed you.  Sign up to continue</span>
+        <span className='short-text'>Welcome back!. We have missed you.</span>
       </div>
       <div className="inputs">
         <div className="input" >
@@ -31,8 +37,8 @@ export function Login() {
       </div>
     </div>
 
-    </>
+    </div>
   )
 }
 
-export default Login
+export default Login;
