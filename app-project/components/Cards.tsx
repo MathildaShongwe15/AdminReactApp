@@ -96,7 +96,7 @@ useEffect(() => {
         title={<div><span style={{ fontSize: 24 }}>{users}</span> <span style={{ fontSize: 14 }}>Users</span></div>}
         description="Number of users."
       />
-    </Card> 
+    </Card>
 
 
 </div>

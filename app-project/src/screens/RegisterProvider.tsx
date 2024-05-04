@@ -47,6 +47,7 @@ import { useNavigate } from 'react-router-dom';
     },
   };
   return (
+    <div className="main-provider">
     <div  className='container-provider'>
     <img  className="img-providers" src={'../src/assets/Logo (2).png'}/>
 
@@ -128,6 +129,7 @@ import { useNavigate } from 'react-router-dom';
 
     </Form>
 
+</div>
 </div>
   );
 }

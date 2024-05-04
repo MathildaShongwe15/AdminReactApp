@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card,Table, } from 'antd';
 // import './App.css'
 
@@ -13,6 +13,8 @@ import Cards from '../../components/Cards';
     { title: 'Last Name', dataIndex: 'LastName', key: 'LastName' },
     { title: 'Phone Number', dataIndex: 'Number', key: 'Number' },
     { title: 'Email', dataIndex: 'Email', key: 'Email' },
+    { title: 'Status', dataIndex: 'status', key: 'status' },
+
 
   ];
 
@@ -20,13 +22,44 @@ import Cards from '../../components/Cards';
   const [complaints, setComplaints] = useState([]);
 
 
+  useEffect(() => {
+    const fetchDataUsers = async () => {
+      try{
+          const response = await fetch('http://localhost:3000/Users');
+
+                if(!response.ok){
+                  throw new Error('Network response not ok')
+                }
+                const jsonData = await response.json();
+                setData( jsonData.users);
+
+                console.log("response is okay", jsonData);
+            }
+            catch(error){
+              console.error('Error fetching Data', error);
+            }
+          }
+
+          fetchDataUsers()
+  },[]);
+  const datas = data.map ((users, index) => ({
+    Id: users.ID,
+    customerName: users.First_Name,
+    LastName: users.Last_Name,
+    Email: users.Email,
+    Number: users.PhoneNumber,
+    status: users.Role,
+
+    key: 'index'
+  }))
+
   return (
     <div style={{marginTop:0}}>
       <Cards/>
     <h2  style={{marginLeft:250, marginTop:50}}>View All Users</h2>
     <span className='short-text' style={{marginLeft:250}}>View Users below</span>
 
-    <Table style={{marginLeft:250, width:1000,marginTop:20}}dataSource={complaints} columns={columns} />
+    <Table style={{marginLeft:250, width:1000,marginTop:20}}dataSource={datas} columns={columns} />
 
 </div>
   )

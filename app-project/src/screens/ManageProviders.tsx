@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
+  const [Id, setId] = useState('');
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +21,6 @@ import { Link, useNavigate } from 'react-router-dom';
                 }
                 const jsonData = await response.json();
                 setData( jsonData.providers);
-                console.log("!!!!!!!!!!!", jsonData.providers)
-
-
                 console.log("response is okay", jsonData);
             }
             catch(error){
@@ -31,8 +30,47 @@ import { Link, useNavigate } from 'react-router-dom';
 
 fetchData()
  },[]);
+ const UpdateProviders = async () => {
+  // const data1 = {name:,Email:, PhoneNumber:, serviceType:,servicefee:}
+
+  await fetch(`http://localhost:3000/UpdateProviderById/${Id}`,{
+   method:'PUT',
+   headers:{
+       'Content-Type':'application/json',
+   },
+   body: JSON.stringify()
+ })
+ .then(response => {
+     if(!response.ok){
+       throw new Error('Network response not ok')
+     }
+     console.log("response is okay", response)
+     return response.json();
+   })
+   .catch(err => console.log(err))
+
+   }
+ const DeleteProvider = async () => {
+
+     await fetch(`http://localhost:3000/DeleteProviderById/${Id}`,{
+      method:'DELETE',
+      headers:{
+          'Content-Type':'application/json',
+      },
+    })
+    .then(response => {
+        if(!response.ok){
+          throw new Error('Network response not ok')
+        }
+        console.log("response is okay", response)
+        return response.json();
+      })
+      .catch(err => console.log(err))
+
+      }
 
  const datas = data.map ((service, index) => ({
+  Id: service.Id,
   name: service.Name,
   type: service.Services.Type,
   email: service.Email,
@@ -70,7 +108,7 @@ fetchData()
         <span>
           <Button style={{marginLeft:20}} >Edit</Button>
 
-          <Button style={{marginLeft:20, backgroundColor:'#C40C0C'}} onClick={showModal}>Delete</Button>
+          <Button style={{marginLeft:20, backgroundColor:'#C40C0C'}} onClick= {showModal} >Delete</Button>
         </span>
       ),
     },
@@ -83,23 +121,37 @@ fetchData()
 
   const handleOk = () => {
     // Perform actions on OK button click
+    DeleteProvider();
     setVisible(false);
+
   };
 
   const handleCancel = () => {
     // Perform actions on Cancel button click
     setVisible(false);
   };
+  const handleOnClick = (record:any) =>{
+  return{
+    onClick: (event: any) => { setId(record.Id)
+      setId(record.Id);
+
+    }
+
+  }
+}
+
+
 
   return (
 
     <div  className="service-cntr" style={{height:800}}>
+      {/* <Sidebar/> */}
         {/* <Sidebar/> */}
     <Cards/>
     <h2 style={{marginLeft:250, marginTop:50 }}>Manage Service Providers</h2>
     <span className='short-text' style={{marginLeft:250}}>Manage Service Providers below</span>
-
-     <Table style={{marginLeft:250, width:1000, marginTop:20}} dataSource={datas} columns={columns} />
+     <Button style={{marginLeft:20, backgroundColor:'#87A922'}} onClick={() => navigate('/RegisterProvider')}>Add a service provider</Button>
+     <Table style={{marginLeft:250, width:1000, marginTop:20}} dataSource={datas} columns={columns} onRow={handleOnClick}/>
      <Modal
         visible={visible}
         onOk={handleOk}
@@ -108,7 +160,7 @@ fetchData()
       >
         <p> Are you sure you want to delete this item?</p>
       </Modal>
-      <a href="" onClick={() => navigate('/ManageProvider')} >Navigate to register Provider</a>
+      <a href="" onClick={() => navigate('/ManageServices')} >Navigate to register Provider</a>
 
 </div>
   )

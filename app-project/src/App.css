@@ -94,7 +94,7 @@ img{
 .img-providers{
   width:120px;
   height:120px;
-  margin-top:50px;
+  margin-top:0px;
 }
 .main{
   display:flex;
@@ -144,7 +144,8 @@ img{
 .service-cntr{
   /* border:3px solid blue; */
   width:100%;
-width:100%
+width:100%;
+
 }
 
 a{
@@ -158,11 +159,19 @@ a:hover{
   display: flex;
   justify-content: center;
   align-items: center;
-   margin-top: 20px;
+   margin-top: 0px;
   flex-direction:column;
   border:1px solid grey;
   margin-left:450px;
   height:700px;
   width:40%;
   margin-top:20px;
+  border-radius: 20px;
+  background:#fff;
+}
+.main-provider{
+  height:100%;
+  width:100%;
+  border:3px solid grey;
+  /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(38,51,97,1) 0%, rgba(65,143,222,1) 79% ); */
 }
