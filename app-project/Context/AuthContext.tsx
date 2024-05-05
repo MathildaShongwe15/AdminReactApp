@@ -35,6 +35,7 @@ export const AuthProvider = ({children}:any) => {
   const [statusCode, setStatus] = useState({});
 
   const login = async (email :string ,password :string) =>{
+    await localStorage.setItem("Email",email);
 
             await fetch('http://localhost:3000/Login',{
                     method:'POST',
@@ -46,9 +47,12 @@ export const AuthProvider = ({children}:any) => {
                     .then(response => {
                       if(!response.ok){
                         setStatus(response.status);
+                         localStorage.setItem("CODE","false");
                         throw new Error('Network response not ok'),
                         console.log(response)
                       }
+                      localStorage.setItem("CODE","true");
+
                       setStatus(response.status);
                       console.log("response is okay", response)
 
@@ -56,7 +60,6 @@ export const AuthProvider = ({children}:any) => {
                     })
                     .then(async data =>(
                       await localStorage.setItem("USERID", data.Id),
-                      await localStorage.setItem("Email", data.Email),
 
                       setAuthState({
                         token: data.token,
@@ -97,6 +100,8 @@ const logout = async()=>{
 
   await localStorage.removeItem(TOKEN_KEY);
   await localStorage.removeItem("USERID");
+  await localStorage.removeItem("Email");
+  await localStorage.removeItem("CODE");
 
    setAuthState({
     token:null,

@@ -16,13 +16,13 @@ import { useAuth } from '../Context/AuthContext';
 
   return (
  <Menu theme='dark' mode="horizontal" className='menu-bar' >
-    <Menu.Item key='home'>  Home</Menu.Item>
+    <Menu.Item key='home'><Link to="/Home"></Link> Dashboard</Menu.Item>
     <Menu.SubMenu key='subtasks' title='Manage' >
     <MenuItem key='Services' ><Link to="/ManageServices"></Link>Services</MenuItem>
     <MenuItem key='Complaints' ><Link to="/Complaints"></Link>Complaints</MenuItem>
     <MenuItem key='Service Providers'><Link to="/ManageProvider"></Link>Service Providers</MenuItem>
     </Menu.SubMenu>
-    <MenuItem key='employees'><Link to="/"></Link>Profile</MenuItem>
+    <MenuItem key='employees'><Link to="/Profile"></Link>Profile</MenuItem>
     <MenuItem key='employees'><Link to="/Users"></Link>Users</MenuItem>
 
     <MenuItem key='logout' onClick={onLogout} ><Link to="/login"></Link>Logout</MenuItem>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ReactLoading from 'react-loading';
 import { Link,useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
+import { Modal } from 'antd';
 
 export function Login() {
   const navigate = useNavigate();
@@ -11,12 +12,31 @@ export function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [visible, setVisible] = useState(false);
+  const handleOk = () => {
+    setVisible(false);
 
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+  const showModal = () => {
+    setVisible(true);
+  };
   const login = async() =>{
-    console.log("!!!",email, password)
-    onLogin!(email,password);
-    navigate('/Users');
-    console.log("Logged in" ,authState?.authenticated)
+    console.log("!!!",authState?.authenticated)
+
+   const CODE =  await localStorage.getItem("CODE");
+
+   onLogin!(email,password);
+
+    if(CODE === "false"){
+      showModal();
+
+    }else{
+      navigate('/Users');
+    }
 
    }
   return (
@@ -51,7 +71,14 @@ export function Login() {
         </div>
       </div>
     </div>
-
+    <Modal
+        visible={visible}
+        onCancel={handleCancel}
+        footer={null}
+        title="Incorrect Password or Email."
+      >
+        <p>Please try again</p>
+      </Modal>
     </div>
   )
 }
