@@ -4,6 +4,7 @@ import React from 'react';
 import Cards from '../../components/Cards'
 import Sidebar from '../../components/SideBar';
 import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../../components/loading';
  function App() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
   const [descriptionPost, setDescriptionPost] = useState('');
 
   const [description, setDescription] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
@@ -25,6 +27,7 @@ import { Link, useNavigate } from 'react-router-dom';
                 }
                 const jsonData = await response.json();
                 setData( jsonData.services);
+                setIsLoading(false)
                 console.log("response is okay", jsonData);
             }
             catch(error){
@@ -141,33 +144,27 @@ import { Link, useNavigate } from 'react-router-dom';
     setVisible3(true);
   };
   const handleOk = () => {
-    // Perform actions on OK button click
     DeleteService();
     setVisible(false);
   };
   const handleOk1 = () => {
-    // Perform actions on OK button click
     UpdateService();
 
     setVisible2(false);
   };
   const handleOk3 = () => {
-    // Perform actions on OK button click
     RegisterService();
 
     setVisible3(false);
   };
   const handleCancel = () => {
-    // Perform actions on Cancel button click
     setVisible(false);
   };
   const handleCancel1 = () => {
-    // Perform actions on Cancel button click
     setVisible2(false);
 
   };
   const handleCancel3= () => {
-    // Perform actions on Cancel button click
     setVisible3(false);
 
   };
@@ -182,6 +179,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
   }
 }
+
+const loadData=()=>{
+  if(isLoading){
+    return <Loading/>
+  }
   return (
 
     <div  className="service-cntr" style={{height:800}}>
@@ -210,8 +212,8 @@ import { Link, useNavigate } from 'react-router-dom';
         title={ "Update Service Type: " + type }
       >
         <p> Edit details below</p>
-        <Input placeholder={"type"} onChange={text => setType(text.target.value)}   />
-        <Input placeholder={"description"}   style={{marginTop:15}} onChange={text => setDescription(text.target.value)} />
+        <Input placeholder={"Service Name"} onChange={text => setType(text.target.value)}   />
+        <Input placeholder={"Service Description"}   style={{marginTop:15}} onChange={text => setDescription(text.target.value)} />
 
       </Modal>
       <Modal
@@ -220,14 +222,22 @@ import { Link, useNavigate } from 'react-router-dom';
         onCancel={handleCancel3}
         title={ "Add Service Type: " }
       >
-        <Input placeholder={"type"} onChange={text => setTypePost(text.target.value)}   />
-        <Input placeholder={"description"}   style={{marginTop:15}} onChange={text => setDescriptionPost(text.target.value)} />
+        <Input placeholder={"Service Name"} onChange={text => setTypePost(text.target.value)}   />
+        <Input placeholder={"Service Description"}   style={{marginTop:15}} onChange={text => setDescriptionPost(text.target.value)} />
 
       </Modal>
       <a href="" onClick={() => navigate('/Complaints')}>Navigate to register Provider</a>
 </div>
   )
+}
 
+
+return (
+
+  <div >
+  {loadData()}
+</div>
+)
 }
 
 export default App;

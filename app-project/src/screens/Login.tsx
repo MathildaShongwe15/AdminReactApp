@@ -1,5 +1,6 @@
 
 import React from 'react';
+import ReactLoading from 'react-loading';
 import { Link,useNavigate } from 'react-router-dom';
 
 export function Login() {
@@ -7,6 +8,7 @@ export function Login() {
   const navigate = useNavigate();
   return (
     <div className='main'>
+
     <div className="container-img">
 
     <img className='img-logo' src={'../src/assets/Logo (2).png'}/>

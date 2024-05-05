@@ -1,6 +1,7 @@
 #root {
   max-width: 100%;
-  height:100%;
+  height:1200px;
+
 }
 
 .logo {
@@ -144,7 +145,7 @@ img{
 .service-cntr{
   /* border:3px solid blue; */
   width:100%;
-width:100%;
+height:2000px;
 
 }
 
@@ -161,7 +162,7 @@ a:hover{
   align-items: center;
    margin-top: 0px;
   flex-direction:column;
-  border:1px solid grey;
+  border:1px solid #EEF1FF;
   margin-left:450px;
   height:700px;
   width:40%;
@@ -172,6 +173,7 @@ a:hover{
 .main-provider{
   height:100%;
   width:100%;
-  border:3px solid grey;
+  border:3px solid #EEF1FF;
+  background-color: #EEF1FF;
   /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(38,51,97,1) 0%, rgba(65,143,222,1) 79% ); */
 }

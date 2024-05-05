@@ -3,12 +3,14 @@ import { Button,Modal,Table } from 'antd';
 import React from 'react';
 import Cards from '../../components/Cards'
 import Sidebar from '../../components/SideBar';
+import Loading from '../../components/loading';
 import { Link, useNavigate } from 'react-router-dom';
  function App() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [Id, setId] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
@@ -21,6 +23,7 @@ import { Link, useNavigate } from 'react-router-dom';
                 }
                 const jsonData = await response.json();
                 setData( jsonData.providers);
+                setIsLoading(false)
                 console.log("response is okay", jsonData);
             }
             catch(error){
@@ -120,14 +123,12 @@ fetchData()
   };
 
   const handleOk = () => {
-    // Perform actions on OK button click
     DeleteProvider();
     setVisible(false);
 
   };
 
   const handleCancel = () => {
-    // Perform actions on Cancel button click
     setVisible(false);
   };
   const handleOnClick = (record:any) =>{
@@ -140,13 +141,14 @@ fetchData()
   }
 }
 
-
-
+const loadData=()=>{
+  if(isLoading){
+    return <Loading/>
+  }
   return (
 
     <div  className="service-cntr" style={{height:800}}>
-      {/* <Sidebar/> */}
-        {/* <Sidebar/> */}
+
     <Cards/>
     <h2 style={{marginLeft:250, marginTop:50 }}>Manage Service Providers</h2>
     <span className='short-text' style={{marginLeft:250}}>Manage Service Providers below</span>
@@ -162,6 +164,14 @@ fetchData()
       </Modal>
       <a href="" onClick={() => navigate('/ManageServices')} >Navigate to register Provider</a>
 
+</div>
+  )
+}
+
+  return (
+
+    <div >
+    {loadData()}
 </div>
   )
 

@@ -5,6 +5,7 @@ import { Button, Card,Modal,Table, } from 'antd';
 import React from 'react';
 import Cards from '../../components/Cards';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../components/loading';
 
  function App() {
   const [data, setData] = useState([]);
@@ -12,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
   const [record, setRecord] = useState('');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const parsedDate = new Date();
   const navigate = useNavigate();
@@ -60,9 +62,7 @@ console.log("IDEEEEE",id)
                 }
                 const jsonData = await response.json();
                 setData( jsonData.Complaints);
-                console.log("!!!!!!!!!!!", jsonData.Complaints)
-
-
+                setIsLoading(false)
                 console.log("response is okay", jsonData);
             }
             catch(error){
@@ -77,6 +77,10 @@ fetchData()
   setIsModalVisible(false);
 };
 
+const loadData=()=>{
+  if(isLoading){
+    return <Loading/>
+  }
   return (
     <div style={{marginTop:0}}>
       <Cards/>
@@ -99,4 +103,11 @@ fetchData()
 
 }
 
+return (
+
+  <div >
+  {loadData()}
+</div>
+)
+ }
 export default App;
