@@ -1,5 +1,6 @@
 .sidebar{
     color:#ffff;
-    z-index: 3;
-    margin-top:150;
   }
+.Layout{
+ width:100%;
+}

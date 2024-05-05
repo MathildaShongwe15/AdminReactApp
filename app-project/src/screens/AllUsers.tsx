@@ -5,6 +5,7 @@ import { Button, Card,Form,Input,Modal,Select,Table, } from 'antd';
 import React from 'react';
 import Cards from '../../components/Cards';
 import Loading from '../../components/loading';
+import Sidebar from '../../components/SideBar';
 
  function App() {
   const [data, setData] = useState([]);
@@ -73,10 +74,10 @@ import Loading from '../../components/loading';
     }
   return (
     <div style={{marginTop:0}}>
+      <Sidebar/>
       <Cards/>
     <h2  style={{marginLeft:250, marginTop:50}}>View All Users</h2>
     <span className='short-text' style={{marginLeft:250}}>View Users below</span>
-    <Button style={{marginLeft:20, backgroundColor:'#87A922'}} onClick={showModal} >Add a Service Provider User</Button>
 
     <Table style={{marginLeft:250, width:1000,marginTop:20}}dataSource={datas} columns={columns} />
     <Modal

@@ -187,7 +187,7 @@ const loadData=()=>{
   return (
 
     <div  className="service-cntr" style={{height:800}}>
-        {/* <Sidebar/> */}
+      <Sidebar/>
     <Cards/>
     <h2 style={{marginLeft:250, marginTop:50 }}>Manage Services</h2>
     <span className='short-text' style={{marginLeft:250}}>Manage your Services below</span>
@@ -204,7 +204,6 @@ const loadData=()=>{
       >
         <p> Are you sure you want to delete this service?</p>
       </Modal>
-      <a href="" onClick={() => navigate('/Complaints')}>Navigate to register Provider</a>
       <Modal
         visible={visible2}
         onOk={handleOk1}
@@ -226,7 +225,6 @@ const loadData=()=>{
         <Input placeholder={"Service Description"}   style={{marginTop:15}} onChange={text => setDescriptionPost(text.target.value)} />
 
       </Modal>
-      <a href="" onClick={() => navigate('/Complaints')}>Navigate to register Provider</a>
 </div>
   )
 }

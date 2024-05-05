@@ -7,7 +7,13 @@ import React from 'react';
  function App() {
 
   return (
-  <>
+  <div className='main'>
+    <div className="container-img">
+
+<img className='img-logo' src={'../src/assets/Logo (2).png'}/>
+  <img  className='img-main' src="../src/assets/work.png"></img>
+
+</div>
   <div className='container'>
   <div className='header'>
      <img  src={'../src/assets/Logo (2).png'}/>
@@ -27,7 +33,7 @@ import React from 'react';
   </div>
 </div>
 
-</>
+</div>
   );
 }
 

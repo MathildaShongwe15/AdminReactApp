@@ -148,6 +148,7 @@ const loadData=()=>{
   return (
 
     <div  className="service-cntr" style={{height:800}}>
+          <Sidebar/>
 
     <Cards/>
     <h2 style={{marginLeft:250, marginTop:50 }}>Manage Service Providers</h2>
@@ -162,7 +163,6 @@ const loadData=()=>{
       >
         <p> Are you sure you want to delete this item?</p>
       </Modal>
-      <a href="" onClick={() => navigate('/ManageServices')} >Navigate to register Provider</a>
 
 </div>
   )

@@ -10,9 +10,9 @@ import React from 'react';
 
   return (
  <Layout >
-  <Sider className="sidebar" collapsible collapsed={false}>
+  <Header >
       <MenuList/>
-    </Sider>
+    </Header>
  </Layout>
 
   );
