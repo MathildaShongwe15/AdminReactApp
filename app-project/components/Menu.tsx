@@ -4,9 +4,14 @@ import '../components/css/Menu.css';
 import {Menu } from 'antd';
  import React from 'react';
 import MenuItem from 'antd/es/menu/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
 
  function App() {
+  const navigate = useNavigate();
+
+  const {onLogout} = useAuth();
+
 
 
   return (
@@ -20,7 +25,7 @@ import { Link } from 'react-router-dom';
     <MenuItem key='employees'><Link to="/"></Link>Profile</MenuItem>
     <MenuItem key='employees'><Link to="/Users"></Link>Users</MenuItem>
 
-    <MenuItem key='logout' ><Link to="/"></Link>Logout</MenuItem>
+    <MenuItem key='logout' onClick={onLogout} ><Link to="/login"></Link>Logout</MenuItem>
 
     </Menu>
 
