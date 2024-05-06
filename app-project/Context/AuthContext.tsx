@@ -52,7 +52,6 @@ export const AuthProvider = ({children}:any) => {
                         console.log(response)
                       }
                       localStorage.setItem("CODE","true");
-
                       setStatus(response.status);
                       console.log("response is okay", response)
 
@@ -60,6 +59,8 @@ export const AuthProvider = ({children}:any) => {
                     })
                     .then(async data =>(
                       await localStorage.setItem("USERID", data.Id),
+                      await localStorage.setItem("FirstName", data.FirstName),
+                      // await localStorage.setItem("FirstName", data.FirstName),
 
                       setAuthState({
                         token: data.token,

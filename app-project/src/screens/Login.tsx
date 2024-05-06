@@ -13,10 +13,18 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
+  const [validError, setValidError] = useState('');
+
+
+  function isValidNumber(value:any ) {
+
+    !value ? setValidError("*Required") : setValidError("")
+  }
   const handleOk = () => {
     setVisible(false);
 
   };
+
   const handleCancel = () => {
     setVisible(false);
   };
@@ -58,6 +66,7 @@ export function Login() {
       <div className="inputs">
         <div className="input"  >
           <input type="text" placeholder='Enter Email Address'  onChange={(text)=>setEmail(text.target.value)}></input>
+          <p>{validError}</p>
         </div>
         <div className="input">
           <input type="password" placeholder='Enter Password' onChange={(text)=>setPassword(text.target.value)}></input>

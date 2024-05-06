@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from '../screens/ResetPassword';
-import Dashboard from '../screens/Dashboard';
 import RegisterProvider from '../screens/RegisterProvider'
 import ManageProvider from '../screens/ManageProviders'
 import ManageServices from '../screens/ManageServices'
@@ -9,6 +8,8 @@ import Complaints from '../screens/Complaints '
 import Profile from '../screens/Profile'
 import Home from '../screens/Home';
 import ResetPassword from '../screens/ResetPassword'
+import UpdatePassword from '../screens/passwordReset'
+
 import Login from '../screens/Login';
 import React from 'react';
 import { AuthProvider, useAuth } from "../../Context/AuthContext";
@@ -18,8 +19,11 @@ const checkAuth = ()=>{
 
   if(!authState?.authenticated){
    return <Routes>
-   <Route path="/login" element={<Login />}></Route>
+   <Route path="/" element={<Login />}></Route>
    <Route path="/Register" element={<Register />}></Route>
+   <Route path="/ResetPassword" element={<ResetPassword />}></Route>
+   <Route path="/UpdatePassword" element={<UpdatePassword />}></Route>
+
    </Routes>
 
   }

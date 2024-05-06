@@ -25,7 +25,7 @@ import { useAuth } from '../Context/AuthContext';
     <MenuItem key='employees'><Link to="/Profile"></Link>Profile</MenuItem>
     <MenuItem key='employees'><Link to="/Users"></Link>Users</MenuItem>
 
-    <MenuItem key='logout' onClick={onLogout} ><Link to="/login"></Link>Logout</MenuItem>
+    <MenuItem key='logout' onClick={onLogout} ><Link to="/"></Link>Logout</MenuItem>
 
     </Menu>
 

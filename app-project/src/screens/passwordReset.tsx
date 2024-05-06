@@ -5,11 +5,12 @@ import { Layout, Modal } from 'antd';
 import React from 'react';
 
  function App() {
-  const [email,setEmail] = useState('');
+  const [password,setpassword] = useState('');
+  const [passwordConfirm,setpasswordConfirm] = useState('');
 
   const success = () => {
     Modal.success({
-      content: 'OTP is sent to ' + email + ' Please check your email',
+      content: ' Password has been reset been successfully!',
     });
   };
   const updatePassword = async () =>{
@@ -39,16 +40,19 @@ import React from 'react';
   <div className='header'>
     <div className='text' >Reset Password!</div>
     <div className='underline'></div>
-    <span className='short-text2'>Enter Email so we can send an OTP to reset your password</span>
+    <span className='short-text2'>Change your password below</span>
   </div>
   <div className="inputs">
 
     <div className="input" >
-      <input type="text" placeholder='Enter Email Address' onChange={text => setEmail(text.target.value)}></input>
+      <input type="text" placeholder='Enter new password' onChange={text => setpassword(text.target.value)}></input>
+    </div>
+    <div className="input" >
+      <input type="text" placeholder='Confirm new password' onChange={text => setpasswordConfirm(text.target.value)}></input>
     </div>
 
     <div className='submit-container' >
-      <button className='submit' onClick={()=>{updatePassword(),success()}}>Send OTP</button>
+      <button className='submit' onClick={()=>{success()}}>Reset Password</button>
     </div>
   </div>
 </div>
