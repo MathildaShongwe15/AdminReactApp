@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Card,Modal,Table, Tag, } from 'antd';
+import { Button, Card,Input,Modal,Table, Tag, } from 'antd';
 // import './App.css'
 
 import React from 'react';
@@ -13,6 +13,7 @@ import Sidebar from '../../components/SideBar';
   const [data, setData] = useState([]);
   const [id, setId] = useState('');
   const [record, setRecord] = useState('');
+  const [status, setStatus] = useState('');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +59,24 @@ console.log("IDEEEEE",id)
       {
         text: 'Juels Towing Service',
         value: 'Juels Towing Service',
-      },],
+      },
+      {
+        text: 'Shell',
+        value: 'Shell',
+      },
+      {
+        text: 'Precision Tow-in Service',
+        value: 'Precision Tow-in Service',
+      },
+      {
+        text: 'Engen',
+        value: 'Engen',
+      },
+
+
+
+
+    ],
       onFilter: (value:any, record:any) => record.provider.indexOf(value) === 0,
       sorter: (a:any, b:any) => a.provider.length - b.provider.length,
       sortDirections: ['descend']
@@ -79,10 +97,7 @@ console.log("IDEEEEE",id)
         text: 'In progress',
         value: 'In progress',
       },
-      {
-        text: 'Closed',
-        value: 'Closed',
-      },
+
     ],
 
     onFilter: (value:any, record:any) => record.status.indexOf(value) === 0,
@@ -110,7 +125,33 @@ console.log("IDEEEEE",id)
 
 fetchData()
  },[]);
+ const updateComplaints = async () =>{
+    const Id = await record?.Id;
+  try{
+          await fetch(`http://localhost:3000/UpdateComplaints/${Id}`,{
+              method: 'PUT',
+              headers:{
+                  'Accept': 'application/json',
+                  'Content-Type':'application/json'
+              },
+              body: JSON.stringify(
+               {
+                status:status
+              })
+              }) .then(response => {
+               if(!response.ok){
+                 throw new Error('Network response not ok'),
+                 console.log(response)
+               }
+               console.log("response is okay", response)
+               return response.json();
+             })
 
+   }
+   catch(err){
+     console.error(err)
+   }
+   };
  const closeModal = () => {
   setIsModalVisible(false);
 };
@@ -128,14 +169,14 @@ const loadData=()=>{
 
     <Table style={{marginLeft:250, width:1000,marginTop:20}}dataSource={datas} columns={columns}  onRow={handleOnClick} />
     <Modal
-        title="User info"
+        title="Update Status for Request"
         visible={isModalVisible}
         onCancel={closeModal}
         footer={null}
       >
-        {/* render whatever you want based on your record */}
         <p>{record?.title} complaint :{record?.description} </p>
-        <Button onClick={() => navigate('/Users')}>Send Complaint to Service provider</Button>
+        <Input placeholder={record?.status} onChange={text => setStatus(text.target.value)}/>
+        <Button type="primary" onClick={updateComplaints} style={{marginTop:10, width:450}}>Send Complaint to Service provider</Button>
       </Modal>
 </div>
   )

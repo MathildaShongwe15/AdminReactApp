@@ -100,6 +100,7 @@ img{
 .main{
   display:flex;
   flex-direction: row ;
+  height: 1000px;
 }
 .container{
   display: flex;
@@ -171,6 +172,22 @@ a:hover{
   margin-top:20px;
   border-radius: 20px;
   background:#fff;
+}
+.container-profile{
+
+  border:3px solid #070F2B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   margin-top: 0px;
+  flex-direction:column;
+  margin-left:450px;
+  height:700px;
+  width:40%;
+  margin-top:20px;
+  border-radius: 20px;
+  background:#fff;
+
 }
 .main-provider{
   height:100%;

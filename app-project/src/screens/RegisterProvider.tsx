@@ -1,15 +1,73 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card,Flex,Form,Input,Select,Typography, Upload, message } from 'antd';
 import '../App.css'
+import uuidv4  from 'react-uuid';
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Item from 'antd/es/list/Item';
 
  function App() {
   const navigate = useNavigate();
+  const uuid = uuidv4(); // Generate a UUID
 
   const [fileList, setFileList] = useState([]);
+  const [Name, setName] = useState('');
+  const [Id, setId] = useState('');
 
+  const [Email, setEmail] = useState('');
+  const [PhoneNumber, setPhoneNumber] = useState('');
+  const [ServiceFee, setServiceFee] = useState(0);
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try{
+          const response = await fetch('http://localhost:3000/AllServices');
+
+                if(!response.ok){
+                  throw new Error('Network response not ok')
+                }
+                const jsonData = await response.json();
+                setData( jsonData.services);
+                console.log("response is okay", jsonData);
+            }
+            catch(error){
+              console.error('Error fetching Data', error);
+            }
+          }
+
+          fetchRequests();
+  },[ ]);
+
+
+  const postServiceRequest = async () =>{
+   await fetch('http://localhost:3000/CreateProviders',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(
+          {
+            Id: uuid,
+            ServiceId:Id,
+            Name: Name,
+            Email: Email,
+            PhoneNumber: PhoneNumber,
+            ServiceFee: ServiceFee
+          })
+        })
+        .then(response => {
+          if(!response.ok){
+            throw new Error('Network response not ok'),
+            console.log(response)
+          }
+          console.log("response is okay", response)
+          return response.json();
+        })
+
+        }
   const handleUpload = (info:any) => {
     if (info.file.status === 'uploading') {
       message.info('Uploading...');
@@ -46,14 +104,14 @@ import { useNavigate } from 'react-router-dom';
       handleUpload(info);
     },
   };
+
+
   return (
     <div className="main-provider">
     <div  className='container-provider'>
     <img  className="img-providers" src={'../src/assets/Logo (2).png'}/>
 
     <h2>Register a new Service Provider</h2>
-
-
     <Form
       name="basic"
       initialValues={{ remember: true }}
@@ -89,10 +147,11 @@ import { useNavigate } from 'react-router-dom';
         rules={[{ required: true, message: '*Required' }]}
         style={{marginLeft:40, marginTop:10}}
       >
-      <Select defaultValue="Option1" >
-      <Option value="Option1">Towing</Option>
-      <Option value="Option2">Jump Start</Option>
-      <Option value="Option3">Flat Tyre</Option>
+
+      <Select defaultValue="choose service" onChange={text=>setId(text)}>
+      { data.map(item => (
+      <Option key={item} value={item.Id}>{item.Type}</Option>
+      ))}
     </Select>
       </Form.Item>
       <Form.Item
@@ -108,14 +167,14 @@ import { useNavigate } from 'react-router-dom';
 <div style={{flexDirection:'row', display:'flex'}}>
 
       <Form.Item style={{maxWidth:550, marginLeft:10}}>
-        <Button  htmlType="submit" >
+        <Button  htmlType="submit" onClick={postServiceRequest} >
           Save
         </Button>
 
       </Form.Item>
 
 <Form.Item style={{maxWidth:550, marginLeft:20}}>
-  <Button  htmlType="submit"  onClick={() => navigate('/Users')} >
+  <Button  htmlType="submit"  onClick={postServiceRequest} >
     Save and Add another
   </Button>
 </Form.Item>

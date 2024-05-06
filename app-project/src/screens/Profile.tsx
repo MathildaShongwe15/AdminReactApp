@@ -63,8 +63,8 @@ const getUserData = async () =>{
     getUserData();
   },[]);
   return (
-    <div className="main">
-    <div  className='container-provider'>
+    <div className="main" style={{backgroundColor:'#070F2B'}}>
+    <div  className='container-profile'>
     <h2 style={{marginTop:-50}}>Update Profile</h2>
 
     <Avatar
@@ -72,11 +72,11 @@ const getUserData = async () =>{
   shape="circle"
   src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 />
-
+<p>Update Profile Information below</p>
     <Form
       name="basic"
       initialValues={{ remember: true }}
-      style={{ width: 500, alignItems:'center', marginTop:30}}
+      style={{ width: 500, alignItems:'center', marginTop:30, marginLeft:120}}
     >
       <Form.Item
         label="First Name:"
@@ -98,6 +98,7 @@ const getUserData = async () =>{
         label="Email"
         name="email"
         rules={[{ required: false, message: '*Required' }]}
+        style={{width:250, marginLeft:30}}
       >
         <Input placeholder={data?.Email} style={{width:250}} onChange={text => setEmail(text.target.value)} />
       </Form.Item>
@@ -105,6 +106,7 @@ const getUserData = async () =>{
         label="ID Number"
         name="ID"
         rules={[{ required: false, message: '*Required' }]}
+        style={{width:250, marginLeft:0}}
       >
         <Input style={{width:250}} />
       </Form.Item>
@@ -112,6 +114,7 @@ const getUserData = async () =>{
         label="Phone Number"
         name="phone number"
         rules={[{ required: false, message: '*Required' }]}
+        style={{width:150,marginLeft:-30 }}
       >
         <Input placeholder={data?.PhoneNumber} style={{width:250}} onChange={text => setPhoneNumber(text.target.value)} />
       </Form.Item>
@@ -120,8 +123,11 @@ const getUserData = async () =>{
 <div style={{flexDirection:'row', display:'flex'}}>
 
       <Form.Item style={{maxWidth:550, marginLeft:10}}>
-        <Button  htmlType="submit" style={{width:400}} onClick={updateUserData} >
-          Save
+        <Button  htmlType="submit" style={{width:350, background:"#"}} onClick={updateUserData} >
+          Update
+        </Button>
+        <Button  type="primary" htmlType="submit" style={{width:350, background:"#", marginTop:10}} onClick={updateUserData} >
+          Back
         </Button>
 
       </Form.Item>

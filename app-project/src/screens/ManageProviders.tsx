@@ -109,9 +109,8 @@ fetchData()
       key: 'action',
       render: () => (
         <span>
-          <Button style={{marginLeft:20}} >Edit</Button>
 
-          <Button style={{marginLeft:20, backgroundColor:'#C40C0C'}} onClick= {showModal} >Delete</Button>
+          <Button style={{marginLeft:5, backgroundColor:'#C40C0C'}} onClick= {showModal} >Delete</Button>
         </span>
       ),
     },

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from '../screens/ResetPassword';
+import Register from '../screens/Register';
 import RegisterProvider from '../screens/RegisterProvider'
 import ManageProvider from '../screens/ManageProviders'
 import ManageServices from '../screens/ManageServices'

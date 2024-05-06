@@ -40,8 +40,7 @@ import Loading from '../../components/loading';
           fetchDataServices()
   },[]);
   const DeleteService = async () => {
-
-    await fetch(`http://localhost:3000/DeleteProviderById/${Id}`,{
+    await fetch(`http://localhost:3000/DeleteService/${Id}`,{
      method:'DELETE',
      headers:{
          'Content-Type':'application/json',
@@ -81,7 +80,7 @@ import Loading from '../../components/loading';
 
        const RegisterService = async () =>{
 
-        await fetch('https://mutt-one-calf.ngrok-free.app/ServiceCreate',{
+        await fetch('http://localhost:3000/ServiceCreate',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -173,7 +172,7 @@ import Loading from '../../components/loading';
 
   const handleOnClick = (record:any) =>{
   return{
-    onClick: (event: any) => { setId(record.Id)
+    onClick: (event: any) => {
       setId(record.Id);
       setType(record.name);
       setDescription(record.description);

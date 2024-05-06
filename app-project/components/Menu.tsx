@@ -15,17 +15,20 @@ import { useAuth } from '../Context/AuthContext';
 
 
   return (
- <Menu theme='dark' mode="horizontal" className='menu-bar' >
-    <Menu.Item key='home'><Link to="/Home"></Link> Dashboard</Menu.Item>
-    <Menu.SubMenu key='subtasks' title='Manage' >
+ <Menu theme='dark' mode="horizontal" className='menu-bar' style={{width:1500, height:100, marginLeft:-50}}>
+    <Menu.Item key='logo'><img className='img-logo' style={{width:90, height:90, marginTop:6}} src={'../src/assets/logo4.png'}/>
+</Menu.Item>
+
+    <Menu.Item key='home'  style={{ marginTop:12}} ><Link to="/Home"></Link> Dashboard</Menu.Item>
+    <Menu.SubMenu key='subtasks' title='Manage' style={{ marginTop:12}} >
     <MenuItem key='Services' ><Link to="/ManageServices"></Link>Services</MenuItem>
     <MenuItem key='Complaints' ><Link to="/Complaints"></Link>Complaints</MenuItem>
     <MenuItem key='Service Providers'><Link to="/ManageProvider"></Link>Service Providers</MenuItem>
     </Menu.SubMenu>
-    <MenuItem key='employees'><Link to="/Profile"></Link>Profile</MenuItem>
-    <MenuItem key='employees'><Link to="/Users"></Link>Users</MenuItem>
+    <MenuItem key='profile' style={{ marginTop:12}} ><Link to="/Profile"></Link>Profile</MenuItem>
+    <MenuItem key='users' style={{ marginTop:12}} ><Link to="/Users"></Link>Users</MenuItem>
 
-    <MenuItem key='logout' onClick={onLogout} ><Link to="/"></Link>Logout</MenuItem>
+    <MenuItem key='logout'style={{ marginTop:12}}  onClick={onLogout} ><Link to="/"></Link>Logout</MenuItem>
 
     </Menu>
 

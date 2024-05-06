@@ -78,7 +78,7 @@ useEffect(() => {
 },[]);
   const { Meta } = Card;
   return (
-    <div className="main-cards" style={{marginTop:-20, flexDirection:'row',display:'flex', marginRight:-1200}}>
+    <div className="main-cards" style={{marginTop:10, flexDirection:'row',display:'flex', marginRight:-1200}}>
      <Card style={{ width: 300, marginLeft:250, marginTop:50, height:100,backgroundColor:'#EEF1FF'}}>
       <Meta
         title={<div><span style={{ fontSize: 24 }}>{data}</span> <span style={{ fontSize: 14 }}>Service Providers</span></div>}
