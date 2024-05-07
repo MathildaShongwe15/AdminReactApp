@@ -11,7 +11,12 @@ import { Link, useNavigate } from 'react-router-dom';
   const [data, setData] = useState([]);
   const [Id, setId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  const warning = () => {
+    Modal.warning({
+      title: 'Deleted service provider',
+      content: 'You have successfully Deleted a service provider',
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +74,7 @@ fetchData()
         return response.json();
       })
       .catch(err => console.log(err))
-
+      warning();
       }
 
  const datas = data.map ((service, index) => ({

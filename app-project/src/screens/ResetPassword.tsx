@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { Input, Layout, Modal } from 'antd';
-import React from 'react';
+import { Input, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
  function App() {

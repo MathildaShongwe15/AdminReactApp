@@ -73,9 +73,6 @@ console.log("IDEEEEE",id)
         value: 'Engen',
       },
 
-
-
-
     ],
       onFilter: (value:any, record:any) => record.provider.indexOf(value) === 0,
       sorter: (a:any, b:any) => a.provider.length - b.provider.length,
@@ -176,7 +173,7 @@ const loadData=()=>{
       >
         <p>{record?.title} complaint :{record?.description} </p>
         <Input placeholder={record?.status} onChange={text => setStatus(text.target.value)}/>
-        <Button type="primary" onClick={updateComplaints} style={{marginTop:10, width:450}}>Send Complaint to Service provider</Button>
+        <Button  onClick={updateComplaints} style={{marginTop:10, width:470, backgroundColor:"#87A922"}}>Update status </Button>
       </Modal>
 </div>
   )

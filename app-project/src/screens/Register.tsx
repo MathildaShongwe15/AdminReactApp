@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
-import ReactLoading from 'react-loading';
-import { Link,useNavigate } from 'react-router-dom';
+import  { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 import { Modal } from 'antd';
 
@@ -16,14 +15,12 @@ export function Login() {
   const [validError, setValidError] = useState('');
 
 
-  function isValidNumber(value:any ) {
-
-    !value ? setValidError("*Required") : setValidError("")
-  }
-  const handleOk = () => {
-    setVisible(false);
-
-  };
+  // function isValidNumber(value:any ) {
+  //   !value ? setValidError("*Required") : setValidError("")
+  // }
+  // const handleOk = () => {
+  //   setVisible(false);
+  // };
 
   const handleCancel = () => {
     setVisible(false);

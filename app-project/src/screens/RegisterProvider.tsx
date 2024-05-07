@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Button, Card,Flex,Form,Input,Select,Typography, Upload, message } from 'antd';
+import { Button, Card,Flex,Form,Input,Modal,Select, Upload, message } from 'antd';
 import '../App.css'
 import uuidv4  from 'react-uuid';
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Item from 'antd/es/list/Item';
+
 
  function App() {
   const navigate = useNavigate();
@@ -20,7 +20,21 @@ import Item from 'antd/es/list/Item';
   const [ServiceFee, setServiceFee] = useState(0);
   const [data, setData] = useState([]);
 
+  const success = () => {
+    Modal.success({
+      content:'You have successfully added a service provider!'
 
+
+    });
+  };
+  const clearAllFields =()=>{
+    setEmail('')
+    setPhoneNumber('');
+    setFileList([]);
+    setName('')
+
+
+  }
   useEffect(() => {
     const fetchRequests = async () => {
       try{
@@ -66,7 +80,7 @@ import Item from 'antd/es/list/Item';
           console.log("response is okay", response)
           return response.json();
         })
-
+        success();
         }
   const handleUpload = (info:any) => {
     if (info.file.status === 'uploading') {
@@ -84,7 +98,7 @@ import Item from 'antd/es/list/Item';
     name: 'file',
     action: 'https://your-upload-url.com',
     multiple: true,
-    beforeUpload: (file) => {
+    beforeUpload: (file:any) => {
       const isAllowed = [ 'file/pdf'].includes(file.type);
       if (!isAllowed) {
         message.error('You can only upload pdf files!');
@@ -119,11 +133,11 @@ import Item from 'antd/es/list/Item';
     >
       <Form.Item
         label="Service Provider:"
-        name="username"
+        name="provider"
         rules={[{ required: true, message: '*Required' }]}
         style={{marginLeft:25}}
       >
-        <Input/>
+        <Input onChange={(text) =>setName(text.target.value)} />
       </Form.Item>
       <Form.Item
         label="Email"
@@ -131,7 +145,7 @@ import Item from 'antd/es/list/Item';
         rules={[{ required: true, message: '*Required' }]}
         style={{marginLeft:85,marginTop:30}}
       >
-        <Input />
+        <Input onChange={(text)=>setEmail(text.target.value)}/>
       </Form.Item>
       <Form.Item
         label="Phone Number"
@@ -139,7 +153,7 @@ import Item from 'antd/es/list/Item';
         rules={[{ required: true, message: '*Required' }]}
         style={{marginLeft:25,marginTop:30}}
       >
-        <Input  />
+        <Input onChange={(text)=>setPhoneNumber(text.target.value)} />
       </Form.Item>
       <Form.Item
         label="Service Type"
@@ -150,7 +164,7 @@ import Item from 'antd/es/list/Item';
 
       <Select defaultValue="choose service" onChange={text=>setId(text)}>
       { data.map(item => (
-      <Option key={item} value={item.Id}>{item.Type}</Option>
+      <Option key={item.ID} value={item.ID}>{item.Type}</Option>
       ))}
     </Select>
       </Form.Item>
@@ -166,25 +180,21 @@ import Item from 'antd/es/list/Item';
     </Form.Item>
 <div style={{flexDirection:'row', display:'flex'}}>
 
-      <Form.Item style={{maxWidth:550, marginLeft:10}}>
+      <Form.Item style={{maxWidth:550, marginLeft:10}} >
         <Button  htmlType="submit" onClick={postServiceRequest} >
           Save
         </Button>
 
       </Form.Item>
-
 <Form.Item style={{maxWidth:550, marginLeft:20}}>
-  <Button  htmlType="submit"  onClick={postServiceRequest} >
-    Save and Add another
+  <Button onClick={()=>navigate('/Home')}  htmlType="button" type={'primary'}  >
+    Back
   </Button>
 </Form.Item>
+
 
 </div>
-<Form.Item style={{maxWidth:550, marginLeft:20}}>
-  <Button onClick={() => navigate('/ManageServices')}  htmlType="button" style={{ backgroundColor:'#C40C0C'}}  >
-    clear all fields
-  </Button>
-</Form.Item>
+
 
     </Form>
 

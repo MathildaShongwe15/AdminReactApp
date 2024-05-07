@@ -39,6 +39,17 @@ import uuidv4 from 'react-uuid';
   const { Meta } = Card;
   const [complaints, setComplaints] = useState([]);
 
+  function validateSAID(idNumber: string) {
+    const regex = /^[0-9]{13}$/; // Matches 13 digits
+    return regex.test(idNumber);
+  }
+  const [idNumber, setIdNumber] = useState('');
+  const [isValid, setIsValid] = useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIdNumber(event.target.value);
+    setIsValid(validateSAID(event.target.value));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -191,7 +202,12 @@ return arr.filter((item:any,index:any) => arr.indexOf(item) ==index);
         rules={[{ required: false, message: '*Required' }]}
         style={{marginLeft:5}}
       >
-        <Input style={{width:250}} onChange={(text)=>setLastName(text.target.value)}/>
+        <Input style={{width:250}} onChange={handleChange} value={idNumber}/>
+        {!isValid ? (
+        <p style={{color:'#B80000'}}>*Invalid ID Number</p>
+      ) : (
+        <p></p>
+      )}
       </Form.Item>
       <Form.Item
         label="Phone Number:"

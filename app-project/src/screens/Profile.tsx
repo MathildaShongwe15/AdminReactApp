@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Avatar, Button, Card,Flex,Form,Input,Select,Typography, Upload, message } from 'antd';
+import { Avatar, Button,Form,Input } from 'antd';
 import '../App.css'
 
 import React from 'react';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
  function App() {
 
   const navigate = useNavigate();
-  const [data,setData] = useState();
+  const [data,setData] = useState<any>();
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
