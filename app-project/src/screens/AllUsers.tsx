@@ -49,7 +49,7 @@ import uuidv4 from 'react-uuid';
                   throw new Error('Network response not ok')
                 }
                 const jsonData = await response.json();
-                setProviderData( jsonData.providers);
+                setProviderData( jsonData.providers.filter((item:any,index:any) => jsonData.providers.indexOf(item) == index));
                 setIsLoading(false)
                 console.log("response is okay", jsonData);
             }
@@ -58,7 +58,7 @@ import uuidv4 from 'react-uuid';
             }
           }
 
-fetchData()
+fetchData();
  },[]);
   useEffect(() => {
     const fetchDataUsers = async () => {
@@ -102,6 +102,12 @@ fetchData()
       console.error(e);
     }
 }
+
+const removeDuplicatesFilter = (arr:any) =>{
+return arr.filter((item:any,index:any) => arr.indexOf(item) ==index);
+
+}
+
   const datas = data.map ((users, index) => ({
     Id: users.ID,
     customerName: users.First_Name,

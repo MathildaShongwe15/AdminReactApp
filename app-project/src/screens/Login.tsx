@@ -43,7 +43,7 @@ export function Login() {
       showModal();
 
     }else{
-      navigate('/Users');
+      navigate('/Home');
     }
 
    }

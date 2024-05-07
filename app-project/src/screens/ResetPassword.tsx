@@ -1,15 +1,22 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { Layout, Modal } from 'antd';
+import { Input, Layout, Modal } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
  function App() {
   const [email,setEmail] = useState('');
+  const navigate = useNavigate();
 
   const success = () => {
     Modal.success({
-      content: 'OTP is sent to ' + email + ' Please check your email',
+      content:  <div>
+      <p>OTP is sent to {email}. Please check your email.</p>
+      <Input type="text" placeholder="Enter OTP" />
+      <button style={{marginTop:20}} onClick={()=>navigate('/UpdatePassword')}>Submit OTP</button>
+
+    </div>
     });
   };
   const updatePassword = async () =>{

@@ -3,10 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Layout, Modal } from 'antd';
 import React from 'react';
+import Password from 'antd/es/input/Password';
+import { useNavigate } from 'react-router-dom';
 
  function App() {
   const [password,setpassword] = useState('');
   const [passwordConfirm,setpasswordConfirm] = useState('');
+  const [email,setEmail] = useState('');
+  const navigate = useNavigate();
 
   const success = () => {
     Modal.success({
@@ -15,12 +19,16 @@ import React from 'react';
   };
   const updatePassword = async () =>{
     try{
-         const response = await fetch(`http://localhost:3000/GetUserByEmail/${email}`);
-         if(!response.ok){
-          throw new Error('Network response not ok')
-        }
-        const jsonData = await response.json();
-        console.log("response is okay", jsonData);
+         let result = await fetch(`http://localhost:3000/ResetPassword/${email}`,{
+         method: 'PUT',
+             headers:{
+                 'Accept': 'application/json',
+                 'Content-Type':'application/json'
+             },
+             body: JSON.stringify({Password:password})
+
+             });
+             result = await result.json();
 
     }
      catch(e){
@@ -43,16 +51,19 @@ import React from 'react';
     <span className='short-text2'>Change your password below</span>
   </div>
   <div className="inputs">
-
-    <div className="input" >
-      <input type="text" placeholder='Enter new password' onChange={text => setpassword(text.target.value)}></input>
+  <div className="input" >
+      <input type="email" placeholder='Enter email' onChange={text => setEmail(text.target.value)}></input>
     </div>
     <div className="input" >
-      <input type="text" placeholder='Confirm new password' onChange={text => setpasswordConfirm(text.target.value)}></input>
+      <input type="password" placeholder='Enter new password' onChange={text => setpassword(text.target.value)}></input>
     </div>
+    <div className="input" >
+      <input type="password" placeholder='Confirm new password' onChange={text => setpasswordConfirm(text.target.value)}></input>
+    </div>
+    <a href="" onClick={() => navigate('/')}>Sign In</a>
 
     <div className='submit-container' >
-      <button className='submit' onClick={()=>{success()}}>Reset Password</button>
+      <button className='submit' onClick={()=>{updatePassword(),success()}}>Reset Password</button>
     </div>
   </div>
 </div>

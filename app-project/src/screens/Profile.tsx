@@ -58,6 +58,7 @@ const getUserData = async () =>{
      catch(e){
        console.error(e);
    }
+   navigate("/Home")
   }
   useEffect(() => {
     getUserData();
@@ -126,7 +127,7 @@ const getUserData = async () =>{
         <Button  htmlType="submit" style={{width:350, background:"#"}} onClick={updateUserData} >
           Update
         </Button>
-        <Button  type="primary" htmlType="submit" style={{width:350, background:"#", marginTop:10}} onClick={updateUserData} >
+        <Button  type="primary" htmlType="submit"     style={{width:350, background:"#", marginTop:10}} onClick={updateUserData} >
           Back
         </Button>
 

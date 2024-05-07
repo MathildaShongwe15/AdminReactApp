@@ -22,7 +22,7 @@ import { useAuth } from '../Context/AuthContext';
     <Menu.Item key='home'  style={{ marginTop:12}} ><Link to="/Home"></Link> Dashboard</Menu.Item>
     <Menu.SubMenu key='subtasks' title='Manage' style={{ marginTop:12}} >
     <MenuItem key='Services' ><Link to="/ManageServices"></Link>Services</MenuItem>
-    <MenuItem key='Complaints' ><Link to="/Complaints"></Link>Complaints</MenuItem>
+    <MenuItem key='Complaints' ><Link to="/Complaints"></Link>Complaints/Compliments</MenuItem>
     <MenuItem key='Service Providers'><Link to="/ManageProvider"></Link>Service Providers</MenuItem>
     </Menu.SubMenu>
     <MenuItem key='profile' style={{ marginTop:12}} ><Link to="/Profile"></Link>Profile</MenuItem>
